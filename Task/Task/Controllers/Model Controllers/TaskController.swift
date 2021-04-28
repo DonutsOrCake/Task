@@ -10,7 +10,6 @@ import Foundation
 class TaskController {
     
     static let sharedInstance = TaskController()
-    
     var tasks: [Task] = []
     
     //CRUD
@@ -22,9 +21,7 @@ class TaskController {
         
     }
     func update(task: Task, name: String?, notes: String?, dueDate: Date?) {
-        
         let updateTask = Task(name: notes, notes: notes, dueDate: dueDate)
-        //updateTask = Task(name: name, notes: notes, dueDate: dueDate)
         tasks.append(updateTask)
         TaskController.sharedInstance.saveToPersistentStore()
     }
@@ -33,11 +30,9 @@ class TaskController {
         TaskController.sharedInstance.saveToPersistentStore()
     }
     func delete(task: Task) {
-        
         guard let index = tasks.firstIndex(of: task) else {return}
         tasks.remove(at: index)
         TaskController.sharedInstance.saveToPersistentStore()
-
     }
     
     //Mark: - Persistence

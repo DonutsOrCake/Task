@@ -14,9 +14,9 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var completionButton: UIButton!
     
-    weak var delegate:TaskCompletionDelegate?
     
-    var task : Task? {
+    weak var delegate: TaskCompletionDelegate?
+    var task: Task? {
         didSet{
             updateViews()
         }
@@ -25,13 +25,12 @@ class TaskTableViewCell: UITableViewCell {
     @IBAction func completionButtonTapped(_ sender: UIButton) {
         delegate?.taskCellButtonTapped(self)
     }
-
+    
     func updateViews() {
         if let newTask = task {
             taskNameLabel.text = newTask.name
             setButtonBackgroundFor(status: newTask.isComplete)
         }
-       
     }
     
     func isComplete(task: Task) -> Bool {
@@ -41,10 +40,8 @@ class TaskTableViewCell: UITableViewCell {
     func setButtonBackgroundFor(status: Bool) {
         if status == true {
             completionButton.setImage(#imageLiteral(resourceName: "complete"), for: .normal)
-            
-            }else {
-                
+        } else {
             completionButton.setImage(#imageLiteral(resourceName: "incomplete"), for: .normal)
         }
     }
-}
+}//End of class

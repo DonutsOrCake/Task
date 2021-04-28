@@ -22,7 +22,8 @@ class TaskDetailViewController: UIViewController {
     //Mark: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        TaskController.sharedInstance.loadFromPersistentStore()
+        updateViews()
     }
     
     //Mark: - Actions
@@ -33,7 +34,7 @@ class TaskDetailViewController: UIViewController {
                                                  name: nameText,
                                                  notes: taskNotesTextView.text ?? "",
                                                  dueDate: date)
-
+            
             TaskController.sharedInstance.saveToPersistentStore()
             navigationController?.popViewController(animated: true)
         }else {
@@ -41,7 +42,7 @@ class TaskDetailViewController: UIViewController {
                                                          notes: taskNotesTextView.text ?? "",
                                                          dueDate: date)
             
-           
+            
             TaskController.sharedInstance.saveToPersistentStore()
             navigationController?.popViewController(animated: true)
         }
@@ -55,6 +56,4 @@ class TaskDetailViewController: UIViewController {
         taskNotesTextView.text = task?.notes
         date = task?.dueDate
     }
-    
-    
-}
+}//End of class

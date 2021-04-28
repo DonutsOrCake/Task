@@ -11,24 +11,21 @@ class TaskListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        TaskController.sharedInstance.saveToPersistentStore()
+        TaskController.sharedInstance.loadFromPersistentStore()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
-    
-    
     // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return TaskController.sharedInstance.tasks.count
-        
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell", for: indexPath) as? TaskTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as? TaskTableViewCell else {return UITableViewCell()}
         let task = TaskController.sharedInstance.tasks[indexPath.row]
         cell.textLabel?.text = task.name
         cell.delegate = self
